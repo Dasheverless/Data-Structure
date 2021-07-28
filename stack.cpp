@@ -11,14 +11,14 @@ class stack
 	typedef long long ll;
 	using value_type = typename Container::value_type;
 	/*test value_type and container's value_type*/
-	static_assert(is_same_v<value_type, T>,"type not matched");
+	static_assert(is_same_v<value_type, T>, "type not matched");
 public:
 	/*constuctor*/
 	stack(T x)
 	{
 		c.push_back(x);
 	}
-	stack(const std::vector<T>& _c)
+	stack(const Container& _c)
 		:c(_c)
 	{
 	}
@@ -35,7 +35,7 @@ public:
 	}
 	T pop()
 	{
-		int x = c.back();
+		T x = c.back();
 		c.pop_back();
 		return x;
 	}
@@ -65,17 +65,16 @@ private:
 };
 int main()
 {
-	std::stack<int> t;
 	stack<int> stk(5);
 	stk.push(1);
 	stk.push(2);
-	std::cout << stk.pop() << ' '; 
+	std::cout << stk.pop() << ' ';
 	std::cout << stk.top() << ' ';
 	std::cout << stk.empty() << ' ';
 	std::cout << stk.size() << '\n';
 	stack<int> stk2 = stk;
 	stack<int> stk3({ 1,2,3 });
 	//test value match
-	stack<int, std::list<long long>> stk4;
+	//stack<int, std::list<long long>> stk4;
 	stack<int, std::deque<int >> stk5;
 }
